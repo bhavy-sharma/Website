@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #050505;
+  --text: #ffffff;
+  --accent: #6366f1;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+/* Hide default cursor for custom cursor */
+body.has-custom-cursor {
+  cursor: none;
+}
+.custom-cursor {
+  pointer-events: none;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
