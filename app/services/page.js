@@ -2,9 +2,7 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import CursorFollower from "@/components/CursorFollower";
-import Canvas3D from "@/components/Canvas3D";
 import {
   Code,
   Video,
@@ -78,9 +76,9 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <SmoothScrollProvider>
+    
       <main className="relative min-h-screen bg-[#050505] text-white overflow-hidden">
-        <Canvas3D />
+        
         <CursorFollower />
         <Navbar />
 
@@ -135,7 +133,7 @@ export default function ServicesPage() {
 
         <Footer />
       </main>
-    </SmoothScrollProvider>
+    
   );
 }
 

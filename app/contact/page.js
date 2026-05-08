@@ -3,9 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import CursorFollower from "@/components/CursorFollower";
-import Canvas3D from "@/components/Canvas3D";
 import { Mail, Phone, MapPin, Send, CheckCircle2, Loader2 } from "lucide-react";
 
 export default function ContactPage() {
@@ -37,9 +35,9 @@ export default function ContactPage() {
   };
 
   return (
-    <SmoothScrollProvider>
+    
       <main className="relative min-h-screen bg-[#050505] text-white overflow-hidden">
-        <Canvas3D />
+        
         <CursorFollower />
         <Navbar />
 
@@ -255,6 +253,6 @@ export default function ContactPage() {
 
         <Footer />
       </main>
-    </SmoothScrollProvider>
+    
   );
 }
