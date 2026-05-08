@@ -3,7 +3,14 @@ import { ReactLenis } from "@studio-freight/react-lenis";
 
 export default function SmoothScrollProvider({ children }) {
   return (
-    <ReactLenis root options={{ lerp: 0.08, duration: 1.5 }}>
+    <ReactLenis
+  root
+  options={{
+    lerp: 0.07,
+    smoothWheel: true,
+    wheelMultiplier: 0.9,
+  }}
+>
       {children}
     </ReactLenis>
   );
