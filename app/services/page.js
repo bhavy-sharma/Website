@@ -1,8 +1,10 @@
+// \app\services\page.js
 "use client";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CursorFollower from "@/components/CursorFollower";
+import Link from "next/link";
 import {
   Code,
   Video,
@@ -76,64 +78,64 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    
-      <main className="relative min-h-screen bg-[#050505] text-white overflow-hidden">
-        
-        <CursorFollower />
-        <Navbar />
 
-        {/* Header Section */}
-        <section className="relative z-10 pt-40 pb-20 px-6">
-          <div className="max-w-7xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <span className="inline-block px-4 py-1.5 mb-6 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-sm font-medium">
-                What We Do Best
-              </span>
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-indigo-200 to-purple-400 bg-clip-text text-transparent">
-                Our Expertise
-              </h1>
-              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-                From code to content, events to entertainment. We provide
-                end-to-end digital solutions tailored to your vision.
-              </p>
-            </motion.div>
-          </div>
-        </section>
+    <main className="relative min-h-screen bg-[#050505] text-white overflow-hidden">
 
-        {/* Services Grid */}
-        <section className="relative z-10 py-20 px-6">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <ServiceCard key={service.id} service={service} index={index} />
-            ))}
-          </div>
-        </section>
+      <CursorFollower />
+      <Navbar />
 
-        {/* CTA Section */}
-        <section className="relative z-10 py-32 px-6">
-          <div className="max-w-4xl mx-auto glass rounded-3xl p-12 text-center border border-indigo-500/20">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to start your project?
-            </h2>
-            <p className="text-gray-400 mb-8">
-              Let's discuss how we can help you achieve your goals.
+      {/* Header Section */}
+      <section className="relative z-10 pt-40 pb-20 px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="inline-block px-4 py-1.5 mb-6 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-sm font-medium">
+              What We Do Best
+            </span>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-indigo-200 to-purple-400 bg-clip-text text-transparent">
+              Our Expertise
+            </h1>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              From code to content, events to entertainment. We provide
+              end-to-end digital solutions tailored to your vision.
             </p>
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-full font-semibold transition"
-            >
-              Get a Quote <ArrowRight size={18} />
-            </a>
-          </div>
-        </section>
+          </motion.div>
+        </div>
+      </section>
 
-        <Footer />
-      </main>
-    
+      {/* Services Grid */}
+      <section className="relative z-10 py-20 px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <ServiceCard key={service.id} service={service} index={index} />
+          ))}
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="relative z-10 py-32 px-6">
+        <div className="max-w-4xl mx-auto glass rounded-3xl p-12 text-center border border-indigo-500/20">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Ready to start your project?
+          </h2>
+          <p className="text-gray-400 mb-8">
+            Let's discuss how we can help you achieve your goals.
+          </p>
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-full font-semibold transition"
+          >
+            Get a Quote <ArrowRight size={18} />
+          </a>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+
   );
 }
 
@@ -175,13 +177,17 @@ function ServiceCard({ service, index }) {
           ))}
         </ul>
 
-        <button className="flex items-center gap-2 text-sm font-medium text-indigo-400 group-hover:text-indigo-300 transition-colors">
-          Learn More{" "}
+
+        <Link
+          href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`}
+          className="flex items-center gap-2 text-sm font-medium text-indigo-400 group-hover:text-indigo-300 transition-colors"
+        >
+          Learn More
           <ArrowRight
             size={14}
             className="group-hover:translate-x-1 transition-transform"
           />
-        </button>
+        </Link>
       </div>
     </motion.div>
   );
