@@ -178,9 +178,10 @@ function ServiceCard({ service, index }) {
         </ul>
 
 
+
         <Link
           href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`}
-          className="flex items-center gap-2 text-sm font-medium text-indigo-400 group-hover:text-indigo-300 transition-colors"
+          className="inline-flex items-center gap-2 text-sm font-medium text-indigo-400 group-hover:text-indigo-300 transition-colors"
         >
           Learn More
           <ArrowRight

@@ -15,13 +15,7 @@ import {
   ArrowRight,
   CheckCircle2,
   ChevronRight,
-  Calendar,
-  Users,
-  Clock,
-  Award,
-  ExternalLink,
   Mail,
-  Phone,
 } from "lucide-react";
 
 // Icon mapping
@@ -94,172 +88,182 @@ export default function ServiceDetailClient({ service, slug }) {
       </section>
       
       {/* Our Process Section */}
-      <section className="relative z-10 py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Process</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              How we work to deliver exceptional results for your project
-            </p>
-          </motion.div>
-          
-          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {service.process.map((step, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="glass rounded-xl p-6 text-center border border-white/5"
-              >
-                <div className="text-4xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent mb-3">
-                  {step.step}
-                </div>
-                <h3 className="font-semibold mb-2">{step.title}</h3>
-                <p className="text-sm text-gray-400">{step.description}</p>
-              </motion.div>
-            ))}
+      {service.process && service.process.length > 0 && (
+        <section className="relative z-10 py-20 px-6">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Process</h2>
+              <p className="text-gray-400 max-w-2xl mx-auto">
+                How we work to deliver exceptional results for your project
+              </p>
+            </motion.div>
+            
+            <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
+              {service.process.map((step, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="glass rounded-xl p-6 text-center border border-white/5"
+                >
+                  <div className="text-4xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent mb-3">
+                    {step.step}
+                  </div>
+                  <h3 className="font-semibold mb-2">{step.title}</h3>
+                  <p className="text-sm text-gray-400">{step.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
       
       {/* Features Grid */}
-      <section className="relative z-10 py-20 px-6 bg-white/5">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">What's Included</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Comprehensive solutions tailored to your needs
-            </p>
-          </motion.div>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            {service.features.map((feature, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="flex gap-4 p-6 glass rounded-xl border border-white/5"
-              >
-                <CheckCircle2 className="text-indigo-400 shrink-0 mt-1" size={20} />
-                <div>
-                  <h3 className="font-semibold mb-1">{feature.title}</h3>
-                  <p className="text-gray-400 text-sm">{feature.description}</p>
-                </div>
-              </motion.div>
-            ))}
+      {service.features && service.features.length > 0 && (
+        <section className="relative z-10 py-20 px-6 bg-white/5">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">What's Included</h2>
+              <p className="text-gray-400 max-w-2xl mx-auto">
+                Comprehensive solutions tailored to your needs
+              </p>
+            </motion.div>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              {service.features.map((feature, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="flex gap-4 p-6 glass rounded-xl border border-white/5"
+                >
+                  <CheckCircle2 className="text-indigo-400 shrink-0 mt-1" size={20} />
+                  <div>
+                    <h3 className="font-semibold mb-1">{feature.title}</h3>
+                    <p className="text-gray-400 text-sm">{feature.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
       
       {/* Technologies & Tools */}
-      <section className="relative z-10 py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Technologies We Use</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Industry-leading tools and platforms
-            </p>
-          </motion.div>
-          
-          <div className="flex flex-wrap justify-center gap-3">
-            {service.technologies.map((tech, idx) => (
-              <motion.span
-                key={idx}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.05 }}
-                className="px-4 py-2 glass rounded-full text-sm border border-white/10"
-              >
-                {tech}
-              </motion.span>
-            ))}
+      {service.technologies && service.technologies.length > 0 && (
+        <section className="relative z-10 py-20 px-6">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Technologies We Use</h2>
+              <p className="text-gray-400 max-w-2xl mx-auto">
+                Industry-leading tools and platforms
+              </p>
+            </motion.div>
+            
+            <div className="flex flex-wrap justify-center gap-3">
+              {service.technologies.map((tech, idx) => (
+                <motion.span
+                  key={idx}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.05 }}
+                  className="px-4 py-2 glass rounded-full text-sm border border-white/10"
+                >
+                  {tech}
+                </motion.span>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
       
       {/* Past Projects */}
-      <section className="relative z-10 py-20 px-6 bg-white/5">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Success Stories</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Real projects that delivered real results
-            </p>
-          </motion.div>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            {service.projects.map((project, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="glass rounded-xl p-6 border border-white/10 hover:border-indigo-500/30 transition-all"
-              >
-                <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
-                <p className="text-gray-400">{project.description}</p>
-              </motion.div>
-            ))}
+      {service.projects && service.projects.length > 0 && (
+        <section className="relative z-10 py-20 px-6 bg-white/5">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Success Stories</h2>
+              <p className="text-gray-400 max-w-2xl mx-auto">
+                Real projects that delivered real results
+              </p>
+            </motion.div>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              {service.projects.map((project, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="glass rounded-xl p-6 border border-white/10 hover:border-indigo-500/30 transition-all"
+                >
+                  <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
+                  <p className="text-gray-400">{project.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
       
       {/* FAQ Section */}
-      <section className="relative z-10 py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
-            <p className="text-gray-400">Got questions? We've got answers</p>
-          </motion.div>
-          
-          <div className="space-y-4">
-            {service.faq.map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="glass rounded-xl p-6 border border-white/5"
-              >
-                <h3 className="font-semibold text-lg mb-2">{item.question}</h3>
-                <p className="text-gray-400">{item.answer}</p>
-              </motion.div>
-            ))}
+      {service.faq && service.faq.length > 0 && (
+        <section className="relative z-10 py-20 px-6">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+              <p className="text-gray-400">Got questions? We've got answers</p>
+            </motion.div>
+            
+            <div className="space-y-4">
+              {service.faq.map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="glass rounded-xl p-6 border border-white/5"
+                >
+                  <h3 className="font-semibold text-lg mb-2">{item.question}</h3>
+                  <p className="text-gray-400">{item.answer}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
       
       {/* CTA Section */}
       <section className="relative z-10 py-32 px-6">
@@ -276,7 +280,7 @@ export default function ServiceDetailClient({ service, slug }) {
               href="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-full font-semibold transition"
             >
-              {service.ctaText} <ArrowRight size={18} />
+              {service.ctaText || "Get Started"} <ArrowRight size={18} />
             </Link>
             
             <Link
