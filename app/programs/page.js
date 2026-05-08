@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CursorFollower from "@/components/CursorFollower";
+import Link from "next/link";
 import {
   Code2,
   Database,
@@ -230,98 +231,97 @@ export default function ProgramsPage() {
       : courses.filter((course) => course.category === activeCategory);
 
   return (
-      <main className="relative min-h-screen bg-[#050505] text-white overflow-hidden">
-        
-        <CursorFollower />
-        <Navbar />
+    <main className="relative min-h-screen bg-[#050505] text-white overflow-hidden">
 
-        {/* Header Section */}
-        <section className="relative z-10 pt-40 pb-10 px-6">
-          <div className="max-w-7xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <span className="inline-block px-4 py-1.5 mb-6 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-sm font-medium">
-                Learn from Industry Experts
-              </span>
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-indigo-200 to-purple-400 bg-clip-text text-transparent">
-                Our Programs
-              </h1>
-              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-                Structured learning paths designed to take you from beginner to
-                professional.
-              </p>
-            </motion.div>
-          </div>
-        </section>
+      <CursorFollower />
+      <Navbar />
 
-        {/* Filter Tabs */}
-        <section className="relative z-10 py-10 px-6 sticky top-20 bg-[#050505]/80 backdrop-blur-md border-y border-white/5">
-          <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-4">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                  activeCategory === cat.id
-                    ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/25"
-                    : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
-                }`}
-              >
-                {cat.name}
-              </button>
-            ))}
-          </div>
-        </section>
-
-        {/* Courses Grid */}
-        <section className="relative z-10 py-20 px-6">
-          <div className="max-w-7xl mx-auto">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeCategory}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-              >
-                {filteredCourses.map((course, index) => (
-                  <CourseCard key={course.id} course={course} index={index} />
-                ))}
-              </motion.div>
-            </AnimatePresence>
-
-            {filteredCourses.length === 0 && (
-              <div className="text-center py-20 text-gray-500">
-                No courses found in this category.
-              </div>
-            )}
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="relative z-10 py-32 px-6">
-          <div className="max-w-4xl mx-auto glass rounded-3xl p-12 text-center border border-indigo-500/20">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Can't find what you're looking for?
-            </h2>
-            <p className="text-gray-400 mb-8">
-              We also offer custom corporate training and private mentorship.
+      {/* Header Section */}
+      <section className="relative z-10 pt-40 pb-10 px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="inline-block px-4 py-1.5 mb-6 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-sm font-medium">
+              Learn from Industry Experts
+            </span>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-indigo-200 to-purple-400 bg-clip-text text-transparent">
+              Our Programs
+            </h1>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Structured learning paths designed to take you from beginner to
+              professional.
             </p>
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-full font-semibold transition"
-            >
-              Contact Us <ArrowRight size={18} />
-            </a>
-          </div>
-        </section>
+          </motion.div>
+        </div>
+      </section>
 
-        <Footer />
-      </main>
+      {/* Filter Tabs */}
+      <section className="relative z-10 py-10 px-6 sticky top-20 bg-[#050505]/80 backdrop-blur-md border-y border-white/5">
+        <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-4">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === cat.id
+                  ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/25"
+                  : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                }`}
+            >
+              {cat.name}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* Courses Grid */}
+      <section className="relative z-10 py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeCategory}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+              {filteredCourses.map((course, index) => (
+                <CourseCard key={course.id} course={course} index={index} />
+              ))}
+            </motion.div>
+          </AnimatePresence>
+
+          {filteredCourses.length === 0 && (
+            <div className="text-center py-20 text-gray-500">
+              No courses found in this category.
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="relative z-10 py-32 px-6">
+        <div className="max-w-4xl mx-auto glass rounded-3xl p-12 text-center border border-indigo-500/20">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Can't find what you're looking for?
+          </h2>
+          <p className="text-gray-400 mb-8">
+            We also offer custom corporate training and private mentorship.
+          </p>
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-full font-semibold transition"
+          >
+            Contact Us <ArrowRight size={18} />
+          </a>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
   );
 }
 
@@ -368,13 +368,17 @@ function CourseCard({ course, index }) {
             </span>
           </div>
 
-          <button className="w-full py-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition font-medium text-sm flex items-center justify-center gap-2 group-hover:border-indigo-500/30">
-            View Details{" "}
+
+          <Link
+            href={`/programs/${course.title.toLowerCase().replace(/\s+/g, '-')}`}
+            className="w-full py-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition font-medium text-sm flex items-center justify-center gap-2 group-hover:border-indigo-500/30"
+          >
+            View Details
             <ArrowRight
               size={14}
               className="group-hover:translate-x-1 transition-transform"
             />
-          </button>
+          </Link>
         </div>
       </div>
     </motion.div>
