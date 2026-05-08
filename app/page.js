@@ -1,7 +1,5 @@
 "use client";
-import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import CursorFollower from "@/components/CursorFollower";
-import Canvas3D from "@/components/Canvas3D";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ServicesSection from "@/components/ServicesSection";
@@ -11,9 +9,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <SmoothScrollProvider>
       <main className="relative min-h-screen bg-[#050505] text-white overflow-hidden">
-        <Canvas3D />
         <CursorFollower />
         <Navbar />
         <HeroSection />
@@ -22,6 +18,5 @@ export default function Home() {
         <ContactSection />
         <Footer />
       </main>
-    </SmoothScrollProvider>
   );
 }
