@@ -19,20 +19,43 @@ export default function ContactPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("loading");
+ // In your ContactPage component:
 
-    // Simulate API call (Replace with actual API endpoint later)
-    setTimeout(() => {
-      console.log("Form Data:", formData);
-      setStatus("success");
-      setFormData({ name: "", email: "", subject: "", message: "" });
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setStatus("loading");
 
-      // Reset status after 3 seconds
-      setTimeout(() => setStatus("idle"), 3000);
-    }, 1500);
-  };
+  // --- New Code Starts Here ---
+  try {
+    // Replace this URL with the Web App URL you copied from Google Apps Script
+    // ✅ Using environment variable
+      const GOOGLE_SHEET_URL = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_URL;
+
+    const response = await fetch(GOOGLE_SHEET_URL, {
+      method: "POST",
+      mode: "no-cors", // This mode helps avoid CORS issues with the Google script
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    // With 'no-cors' mode, we can't reliably check response.ok.
+    // We'll assume success if no error is thrown by the fetch itself.
+    console.log("Form submitted successfully (assumed)");
+    setStatus("success");
+    setFormData({ name: "", email: "", subject: "", message: "" });
+    setTimeout(() => setStatus("idle"), 3000);
+
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    setStatus("error");
+    setTimeout(() => setStatus("idle"), 3000);
+  }
+  // --- New Code Ends Here ---
+
+  // ... (delete the old setTimeout simulation code)
+};
 
   return (
     

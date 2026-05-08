@@ -12,12 +12,34 @@ export default function ContactForm() {
   } = useForm();
   const [submitted, setSubmitted] = useState(false);
 
-  const onSubmit = async (data) => {
-    // Yaha baad me apna API call laga dena (Resend, Supabase, EmailJS etc.)
+  // In your ContactForm component:
+
+const onSubmit = async (data) => {
+  // --- New Code Starts Here ---
+  try {
+    // Replace this URL with the same Web App URL
+    // ✅ Using environment variable
+      const GOOGLE_SHEET_URL = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_URL;
+
+    const response = await fetch(GOOGLE_SHEET_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    
     console.log("✅ Form Submitted:", data);
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
-  };
+    
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    alert("There was an error submitting the form. Please try again.");
+  }
+  // --- New Code Ends Here ---
+};
 
   return (
     <motion.div
